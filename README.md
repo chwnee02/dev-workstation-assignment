@@ -277,7 +277,6 @@ dev-workstation-assignment/
 	- 명령어:
 	mkdir -p backup
 	docker run --rm -v web-volume:/data -v "$(pwd)/backup:/backup" ubuntu tar czf /backup/web-volume-backup.tar.gz -C /data .
-	
 
 ## 10. Dockerfile 실습
 - Dockerfile 작성: 
@@ -424,6 +423,22 @@ dev-workstation-assignment/
 	- git pull origin main --allow-unrelated-histories --no-rebase 명령어를 실행하여 원격 저장소의 변경 사항을 가져오고 로컬 저장소와 병합했다.
 	- Merge made by the 'ort' strategy. 메시지를 통해 병합이 성공한 것을 확인했다.
 	- 이후 git push -u origin main 명령어를 다시 실행하여 원격 저장소에 업로드했다.
+- 검증 (조치 전후 상태 비교):
+	- 조치 전: docker ps 로 ubuntu-session이 Up 상태인 것을 확인한 뒤 attach함. 기본 detach 키(Ctrl + P, Ctrl + Q)가 동작하지 않아 빠져나오지 못함
+	- 조치 후: --detach-keys="ctrl-x" 로 attach한 뒤 Ctrl + X로 빠져나옴. docker ps 에서 ubuntu-session이 계속 Up 상태인 것을 확인함
+	- 출력 결과:
+	docker start ubuntu-session
+		ubuntu-session
+	docker ps
+		CONTAINER ID   IMAGE     COMMAND       CREATED        STATUS         PORTS     NAMES
+		d816c31854b5   ubuntu    "/bin/bash"   26 hours ago   Up 4 seconds             ubuntu-session
+	docker attach --detach-keys="ctrl-x" ubuntu-session
+		root@d816c31854b5:/# pwd
+		/
+		root@d816c31854b5:/# read escape sequence
+	docker ps
+		CONTAINER ID   IMAGE     COMMAND       CREATED        STATUS          PORTS     NAMES
+		d816c31854b5   ubuntu    "/bin/bash"   26 hours ago   Up 48 seconds             ubuntu-session
 
 ![git push 실패 및 해결 화면](./screenshots/12-2-1-push-rejected-resolved.png)
 
