@@ -73,7 +73,7 @@
 	- 파일 삭제: rm test2.md
 	- 파일 내용 확인: cat .gitignore
 
-![폴더파일 생성, 확인](./screenshots/4-1.폴더:파일 생성, 확인.png)
+![폴더파일 생성, 확인](./screenshots/4-1. 폴더:파일 생성, 확인.png)
 ![파일 복사](./screenshots/4-2. 파일 복사.png)
 ![파일 이름 변경](./screenshots/4-3. 파일 이름 변경.png)
 ![파일 삭제](./screenshots/4-4. 파일 삭제.png)
